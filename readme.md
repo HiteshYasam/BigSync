@@ -1,14 +1,14 @@
 
 # BigSync
 This software is my undergoing final year B.Tech. project.
-It uses the algorithm developed in paper "**A Novel Event Detection and Classification Scheme Using Wide-Area Frequency Measurements**" to detect and classify events.
+It uses the few most famous algorithms "**Fault Classification**", "**Fault detection Sample to Sample**", "**Fault detection Cycle to Cycle**".
 
 ## Tech-stack
 
- 1. Frontend : **React.js**
+ 1. Frontend : **React.js** 
  2. Backend : 
  -- **Python** for implementing algorithms discussed in the paper 
--- Two different servers :  one is a **fastAPI** server and is using **node.js** and child processes module for making python child process.
+-- Two different servers :  one is a **fastAPI** server and Other is using **node.js** and child processes module for making python child process.
 -- **fastAPI** server is preferred.
 
 ## Prerequisites for installing
