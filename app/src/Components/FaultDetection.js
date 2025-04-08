@@ -32,7 +32,7 @@ const FaultDetection = () => {
 
   const sendToServer = async () => {
     setLoading(true);
-    const analysisTypeValue = analysisType === "sample-to-sample" ? 0 : 1;
+    const analysisTypeValue = analysisType === "sample-to-sample" ? 0.0 : 1.0;
     const formData = new FormData();
     formData.append('samplingRate', samplingRate);
     formData.append('threshold', threshold);

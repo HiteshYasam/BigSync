@@ -18,7 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PlaceIcon from '@mui/icons-material/Place';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt'; //
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt'; 
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot'; //
 
 import HomeIcon from '@mui/icons-material/Home';
 import { useState } from 'react'
@@ -84,7 +85,7 @@ const Navabar = (props) => {
   const [state, setState] = useState({
     left: false,
   });
-  const icons = [<HomeIcon />, <TimelineIcon />, <QueryStatsIcon />, <AnalyticsIcon />, <PlaceIcon />, <ElectricBoltIcon/>]//
+  const icons = [<HomeIcon />, <TimelineIcon />, <QueryStatsIcon />, <AnalyticsIcon />, <PlaceIcon />, <ElectricBoltIcon/>, <TroubleshootIcon/>]//
   // Define the toggleDrawer function
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -108,7 +109,8 @@ const Navabar = (props) => {
           { text: 'Baseline', href: '/baseline' },
           { text: 'Oscillation Characterisation', href: '/oscillation-characterisation' },
           { text: 'Oscillation Source Location', href: '/oscillation-source-location' },
-          { text: 'Fault Classification', href: '/faultclassification'}//
+          { text: 'Fault Classification', href: '/faultclassification'},
+          { text: 'Fault Detection', href: '/faultDetection'}//
           
         ].map((item, index) => (
           <ListItem key={item.text} disablePadding>

@@ -209,7 +209,7 @@ async def FD(file: UploadFile = File(...), samplingRate: float = Form(...), thre
 
         # Return JSON response
         if mn_time is not None and mx_time is not None:
-            return {"status": "Fault detected", "fault_start": round(mn_time, 4), "fault_end": round(mx_time, 4)}
+            return {"status": "Fault detected", "fault_start": mn_time, "fault_end": mx_time}
         else:
             return {"status": "No fault detected", "fault_start": None, "fault_end": None}
 

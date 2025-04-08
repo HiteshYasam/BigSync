@@ -43,5 +43,5 @@ def faultClassificationSampleToSample(excel_data, threshold):
     else:
         print("No fault detected")
 
-    # return{mn_time, mx_time}
-    return {0, 1}
+    return (mn_time, mx_time)
+    # return {0, 1}
