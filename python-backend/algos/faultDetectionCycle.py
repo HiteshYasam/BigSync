@@ -13,10 +13,6 @@ def faultClassificationCycleToCycle(excel_data, threshold, f_s):
     IB = fault_data["IB"].values        # Phase B Current
     IC = fault_data["IC"].values        # Phase C Current
 
-    # User-defined parameters
-    # f_s = float(input("Enter sampling frequency (Hz): "))  # e.g., 1000 Hz
-    # threshold = float(input("Enter fault threshold: "))  # e.g., 1.5 A
-
     # Calculate samples per cycle
     N = int(f_s / 50)  # Samples per 50 Hz cycle
 
