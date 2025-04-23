@@ -72,15 +72,6 @@ class OSLPSettings(BaseModel):
     points:List[float]
 
 
-# def faultClassificationSequenceComponents(sim_duration, fault_instant, fault_duration):
-#     try:
-#         # Example: Process the excel data (you can adjust the logic)
-#         # excel_data.to_csv('processed_data.csv')
-#         return {"status": "Processed successfully", "simulation_duration": sim_duration}
-#     except Exception as e:
-#         raise HTTPException(status_code=400, detail=f"Error processing data: {str(e)}")
-
-
 @app.get("/")
 def index():
     return {"message": "Welcome to the API"}
@@ -179,9 +170,8 @@ async def oslp_analysis(event_settings: OSLPSettings):
 @app.post("/v2/FCSQ")
 async def FCSQ(file: UploadFile = File(...), totalTime: float = Form(...), faultTimeInstant: float = Form(...), faultDuration: float = Form(...)):
     try:
-        import openpyxl
         file_content = await file.read()
-        excel_data = pd.read_excel(io.BytesIO(file_content), engine="openpyxl")
+        excel_data = pd.read_excel(io.BytesIO(file_content))
         
         response_data = faultClassificationSequenceComponents(
             excel_data, totalTime, faultTimeInstant, faultDuration
@@ -197,21 +187,16 @@ async def FCSQ(file: UploadFile = File(...), totalTime: float = Form(...), fault
 async def FD(file: UploadFile = File(...), samplingRate: float = Form(...), threshold: float = Form(...), analysisTypeValue: float = Form(...)):
     try:
         # Read Excel file
-        import openpyxl
         file_content = await file.read()
-        excel_data = pd.read_excel(io.BytesIO(file_content), engine="openpyxl")
+        excel_data = pd.read_excel(io.BytesIO(file_content))
 
         # Call the appropriate function based on analysisTypeValue
         if analysisTypeValue == 0.0:
-            mn_time, mx_time = faultClassificationSampleToSample(excel_data, threshold)
+            response_data = faultClassificationSampleToSample(excel_data, threshold)
         elif analysisTypeValue == 1.0:
-            mn_time, mx_time = faultClassificationCycleToCycle(excel_data, threshold, samplingRate)
+            response_data = faultClassificationCycleToCycle(excel_data, threshold, samplingRate)
 
-        # Return JSON response
-        if mn_time is not None and mx_time is not None:
-            return {"status": "Fault detected", "fault_start": mn_time, "fault_end": mx_time}
-        else:
-            return {"status": "No fault detected", "fault_start": None, "fault_end": None}
+        return JSONResponse(content=response_data)
 
     except Exception as e:
         return {"error": str(e)}

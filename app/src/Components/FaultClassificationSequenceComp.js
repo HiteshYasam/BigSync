@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GLOBAL from '../GLOBAL';
-import Plot from '../utils/plot';
+import Plot from '../utils/plot_FC';
 import {
   Container,
   Typography,
@@ -82,7 +82,7 @@ const FaultAnalyzer = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
       {/* Form Container */}
       <Paper
         elevation={4}
