@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import GLOBAL from '../GLOBAL';
 import Plot from '../utils/plot_FD';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Container,
   Typography,
@@ -26,6 +28,7 @@ const FaultDetection = () => {
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [plotData, setPlotData] = useState(null);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const uploadedFile = e.target.files[0];
@@ -190,6 +193,18 @@ const FaultDetection = () => {
           </Typography>
         </Paper>
       )}
+
+      {response.includes("Fault detected") && (
+        <Paper elevation={3} sx={{ mt: 2, p: 2, textAlign: "center", maxWidth: 400, mx: "auto" }}>
+          <Typography variant="body1" mb={1}>
+            Ready to classify the detected fault?
+          </Typography>
+          <Button variant="contained" onClick={() => navigate("/faultclassification")}>
+            Go to Fault Classification
+          </Button>
+        </Paper>
+      )}
+
 
       {/* Plot Container */}
       {plotData && (

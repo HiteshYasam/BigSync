@@ -168,13 +168,13 @@ async def oslp_analysis(event_settings: OSLPSettings):
 
 
 @app.post("/v2/FCSQ")
-async def FCSQ(file: UploadFile = File(...), totalTime: float = Form(...), faultTimeInstant: float = Form(...), faultDuration: float = Form(...)):
+async def FCSQ(file: UploadFile = File(...), totalTime: float = Form(...), faultStart: float = Form(...), faultEnd: float = Form(...)):
     try:
         file_content = await file.read()
         excel_data = pd.read_excel(io.BytesIO(file_content))
         
         response_data = faultClassificationSequenceComponents(
-            excel_data, totalTime, faultTimeInstant, faultDuration
+            excel_data, totalTime, faultStart, faultEnd
         )
         return JSONResponse(content=response_data)
     except ImportError:
